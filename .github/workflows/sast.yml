@@ -1,4 +1,5 @@
 name: Perform Mixeway Scan
+
 jobs:
   mixeway-scan:
     name: Mixeway Scanning
@@ -16,4 +17,7 @@ jobs:
           docker pull mixeway/scanner:latest
       - name: Run Scan
         run: |
-          mvn package
+          docker run -e OSS_USERNAME=mateuszkd67@gmail.com -e OSS_KEY=4c42ec31278e3aa20a1750236caa2127714e559e -e MIXEWAY_URL=https://hub.mixeway.io -e MIXEWAY_KEY=b2374b59-b038-4ddb-97ba-ab5614b6d642 -e MIXEWAY_PROJECT_ID=84 -e MODE=STANDALONE -e MIXEWAY_PROJECT_NAME=mkordow_lab_secure_app -e COMMIT_ID=test -e BRANCH=master -v /opt/lab_sec_audit/sast:/opt/sources mixeway/scanner:latest
+          git add .
+          git commit -m "Github actions"
+          git push origin master
